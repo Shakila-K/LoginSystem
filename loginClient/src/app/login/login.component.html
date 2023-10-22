@@ -1,0 +1,32 @@
+<div class="login-page">
+    <div class="login-container">
+        <h2>Log in</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input formControlName="userName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+              <div *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched">
+                <div  *ngIf="loginForm.get('userName')?.errors">
+                    <label class="warne">*userName required</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <div  *ngIf="loginForm.get('password')?.errors">
+                    <label class="warne">*Password required</label>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="errMess!=''">
+                <label>Check username and password</label>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>         
+          </form>
+    </div>
+</div>

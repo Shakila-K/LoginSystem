@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/Inter-Regular.ttf') format('tff');
+    /* Add more font formats if necessary (e.g., ttf, svg) */
+    font-weight: normal;
+    font-style: normal;
+  }

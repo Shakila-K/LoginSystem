@@ -1,0 +1,37 @@
+<div class="user-page">
+    <div class="navbar">
+        <div class="nav-item" (click)="changeComponent('myacc')">
+            <a>
+                <label>My Account</label>
+            </a>
+        </div>
+        <div *ngIf="isAdmin" class="nav-item" (click)="changeComponent('allusers')">
+            <a>
+                <label>Manage Users</label>
+            </a>
+        </div>
+        <div *ngIf="isAdmin" class="nav-item" (click)="changeComponent('adduser')">
+            <a>
+                <label>Add New Users</label>
+            </a>
+        </div>
+        <div class="nav-item" (click)="logout()">
+            <a>
+                <label>LOG OUT</label>
+            </a>
+        </div>
+    </div>
+    <div class="content" >
+        <div *ngIf="activeComponent=='myacc'">
+            <app-my-account></app-my-account>
+
+        </div>
+        <div *ngIf="activeComponent=='allusers'" >
+            <app-manage></app-manage>
+        </div>
+        <div *ngIf="activeComponent=='adduser'">
+            <app-new-user></app-new-user>
+        </div>
+        
+    </div>
+</div>
