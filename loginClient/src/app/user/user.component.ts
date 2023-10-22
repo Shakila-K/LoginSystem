@@ -24,8 +24,6 @@ logout() {
     ngOnInit(){
       this.userName=this.jwtDeco.getUserName();
       this.isAdmin=this.jwtDeco.isAdmin();
-      console.log(this.userName+"jsdj"+this.isAdmin)
-
     }
 
     changeComponent(componentName :string){

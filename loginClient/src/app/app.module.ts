@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ManageComponent } from './manage/manage.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { NewUserComponent } from './new-user/new-user.component';
     UserComponent,
     MyAccountComponent,
     ManageComponent,
-    NewUserComponent
+    NewUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

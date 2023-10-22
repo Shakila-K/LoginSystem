@@ -15,6 +15,8 @@ export class MyAccountComponent implements OnInit{
   userForm!:FormGroup
   user!:UserDto;
   userName!:string;
+  userExist: boolean = false;
+
   constructor(private http:HttpClient,private jwtdeco:JwtService,private fb:FormBuilder,private router:Router){
     this.userForm = this.fb.group({
       userName: ['', Validators.required],
@@ -23,7 +25,7 @@ export class MyAccountComponent implements OnInit{
       name: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(1)]],
       dob: ['', Validators.required],
-      // Admin:[false]
+      Admin:[false] //When updating user accounts we cant change account type so this value has no effect
     });
   }
   ngOnInit(): void {
@@ -37,25 +39,27 @@ export class MyAccountComponent implements OnInit{
         this.userForm.get('name')?.setValue(this.user.name);
         this.userForm.get('age')?.setValue(this.user.age);
         this.userForm.get('dob')?.setValue(this.user.dob);   
-        // this.userForm.get('Admin')?.setValue(this.user.Admin);
       }
     )
-
-    console.log(ENDPOINTS.GETINFO+this.userName);
   }
 
   onSubmit(user:UserDto){
-    this.http.put<UserDto>(ENDPOINTS.UPDATE,user).subscribe((response)=>
-    {
-      this.user=response;
-      const currentUrl = this.router.url;
-                              this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                              this.router.navigate([currentUrl]);
-                              });
-      console.log(response);
-    })
-    console.log(ENDPOINTS.UPDATE+ "   gf " + user.email)
-
+    this.http.get(ENDPOINTS.CHECK+user.userName).subscribe(
+      (data) => {
+        if (!data || (this.jwtdeco.getUserName()==user.userName)){
+          this.http.put<UserDto>(ENDPOINTS.UPDATE,user).subscribe(
+            (response)=> {
+              this.user=response;
+              const currentUrl = this.router.url;
+              this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this.router.navigate([currentUrl]);
+              });
+          })
+        }
+        else{
+          this.userExist=true;
+        }
+      }
+    )   
   }
-  
 }

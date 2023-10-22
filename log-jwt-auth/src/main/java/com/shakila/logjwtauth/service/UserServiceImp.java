@@ -47,7 +47,7 @@ public class UserServiceImp implements UserService {
     public User editUser(User user) {
         if (checkUser(user.getUserName())){
             Optional<User> temp = getUser(user.getUserName());
-            user.setAdmin(temp.get().isAdmin());
+            user.setAdminAcc(temp.get().isAdminAcc());
             return this.userRepository.save(user);
         }
         else {

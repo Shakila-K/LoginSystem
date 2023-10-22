@@ -1,0 +1,35 @@
+<div class="content">
+    <div class="formClass">
+        <h2>Edit User</h2>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input formControlName="userName" type="text" class="form-control">
+                <label for="userName" *ngIf="userExist">User Name already exist</label>
+            </div>
+            <div class="form-group">
+                <label for="userName">Password</label>
+                <input formControlName="password" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input formControlName="email" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input formControlName="name" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input formControlName="age" type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input formControlName="dob" type="date" class="form-control">
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

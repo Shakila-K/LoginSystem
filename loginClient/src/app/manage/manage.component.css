@@ -1,0 +1,26 @@
+.content{
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manageTable{
+    width: 60%;
+    position: fixed;
+    top: 0;
+    margin: 5%;
+}
+
+.manageTable h2{
+    margin: 5%;
+}
+
+svg:hover{
+    cursor: pointer;
+}
+
+button{
+    margin-right: 5px;
+}

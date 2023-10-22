@@ -4,30 +4,32 @@
         <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
             <div class="form-group">
                 <label for="userName">User Name</label>
-                <input formControlName="userName" type="text" class="form-control" id="userName">
+                <input formControlName="userName" type="text" class="form-control">
+                <label for="existingName" *ngIf="userExist">User Name Already Exist</label>
             </div>
             <div class="form-group">
                 <label for="userName">Password</label>
-                <input formControlName="password"  type="text" class="form-control" id="password">
+                <input formControlName="password" type="text" class="form-control">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" formControlName="email" class="form-control" id="email">
+                <input formControlName="email" type="text" class="form-control">
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input formControlName="name"  type="text" class="form-control" id="name">
+                <input formControlName="name" type="text" class="form-control">
             </div>
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" formControlName="age"  class="form-control" id="age">
+                <input formControlName="age" type="number" class="form-control">
             </div>
             <div class="form-group">
                 <label for="dob">Date of Birth</label>
-                <input type="date" class="form-control" formControlName="dob"  id="dob">
+                <input formControlName="dob" type="date" class="form-control">
             </div>
             <div class="form-group">
-                <input type="checkbox" formControlName="Admin" name="admin" id="admin"><label for="dob"> Make this account an admin account</label>   
+                <input formControlName="adminAcc" type="checkbox" name="admin">
+                <label for="dob"> Make this account an admin account</label>   
             </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-primary">Save Changes</button>

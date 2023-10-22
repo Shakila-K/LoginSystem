@@ -27,7 +27,7 @@ public class User {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dob;
-    private boolean isAdmin;
+    private boolean adminAcc;
 
     //    @Enumerated(EnumType.STRING)
 //    private Role role;

@@ -1,3 +1,4 @@
+import { UserDto } from './../dto/UserDto';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NewUserComponent {
   userForm!:FormGroup;
-  
+  userExist: boolean = false;
 
   constructor(private fb:FormBuilder,private http:HttpClient,private router:Router){
     this.userForm = this.fb.group({
@@ -21,20 +22,32 @@ export class NewUserComponent {
       name: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(1)]],
       dob: ['', Validators.required],
-      Admin:[false]
+      adminAcc:[false]
     });
   }
 
   onSubmit(user:any){
-    this.http.post(ENDPOINTS.CREATE,user).subscribe(
+    this.http.get(ENDPOINTS.CHECK+user.userName).subscribe(
       (data) => {
-        const currentUrl = this.router.url;
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-        });
-      }  
-    )
+        if(!data){
+          console.log(user);
+          this.http.post(ENDPOINTS.CREATE,user).subscribe(
+            (data) => {
+              const currentUrl = this.router.url;
+              this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this.router.navigate([currentUrl]);
+              });
+            }  
+          )
+        }
+        else{
+          this.userExist=true;
+        }
       }
+    )
+        
+  }
+
 
   
 }
